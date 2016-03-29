@@ -47,7 +47,7 @@ public class ListeA<T> implements IListe<T> {
       }
       liste = newListe;
       size--;
-    }else {
+    } else {
       throw new NullPointerException();
     }
   }
@@ -66,7 +66,7 @@ public class ListeA<T> implements IListe<T> {
   public Object retrieve(int index) {
     if (index >= 0 && index < size) {
       return liste[index];
-    }else {
+    } else {
       throw new NullPointerException();
     }
   }
@@ -79,10 +79,10 @@ public class ListeA<T> implements IListe<T> {
         newListe[i] = liste[i];
       }
       for (int i = 0; i < otherListe.size(); i++) {
-        newListe[i+size] = otherListe.retrieve(i);
+        newListe[i + size] = otherListe.retrieve(i);
       }
       liste = newListe;
-      size=size+otherListe.size();
+      size = size + otherListe.size();
     }
   }
 
