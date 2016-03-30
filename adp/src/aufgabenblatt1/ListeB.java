@@ -56,23 +56,15 @@ public class ListeB<T> implements IListe<T> {
 
   @Override
   public int find(T newElement) {
-    if (size == 0) {
-      return -1;
-    }
-
-    ElementB helpElementB = (ElementB) liste[0];
-
-    while (!liste[helpElementB.getNexIndex()].equals(element)) {
-      if (helpElementB.getElement().equals(newElement)) {
-        return helpElementB.getNexIndex() - 1;
+    if (size > 0) {
+      ElementB help = (ElementB) liste[0];
+      while (!help.equals(element)) {
+        if (help.getElement().equals(newElement)) {
+          return help.getNexIndex() - 1;
+        }
+        help = (ElementB) liste[help.getNexIndex()];
       }
-      helpElementB = (ElementB) liste[helpElementB.getNexIndex()];
     }
-
-    if (helpElementB.getElement().equals(newElement)) {
-      return helpElementB.getNexIndex() - 1;
-    }
-
     return -1;
   }
 
