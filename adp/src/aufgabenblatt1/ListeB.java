@@ -40,27 +40,18 @@ public class ListeB<T> implements IListe<T> {
 
   @Override
   public void delete(int index) {
-    if ((index == 0 && size == 1) || index == size - 1) {
-      size--;
-      liste[size] = element;
-    } else if (index >= 0 && index < size) {
-      ElementB helpElementB = (ElementB) liste[index];
-
-      while (helpElementB.getNexIndex() < size) {
-        helpElementB.einfuegen(helpElementB.getPrevIndex(),
-            helpElementB.getElement());
-        helpElementB = (ElementB) liste[helpElementB.getNexIndex() + 1];
-        liste[helpElementB.getPrevIndex()] = helpElementB;
+    if (index >= 0 && index < size) {
+      ElementB help = (ElementB) liste[index + 1];
+      while (!help.equals(element)) {
+        liste[help.getPrevIndex()] = help;
+        help.einfuegen(help.getPrevIndex(), help.getElement());
+        help = (ElementB) liste[help.getNexIndex() + 1];
       }
-      liste[helpElementB.getPrevIndex()] = helpElementB;
-      helpElementB.einfuegen(helpElementB.getPrevIndex(),
-          helpElementB.getElement());
       size--;
       liste[size] = element;
     } else {
       throw new IndexOutOfBoundsException();
     }
-
   }
 
   @Override
