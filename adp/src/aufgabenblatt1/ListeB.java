@@ -1,9 +1,13 @@
 package aufgabenblatt1;
 
 public class ListeB<T> implements IListe<T> {
+
   private Object[] liste = new Object[10];
+
   private int size = 0;
+
   private ElementB elementB = new ElementB();
+
   private ElementB stop = new ElementB();
 
   @Override
@@ -106,17 +110,17 @@ public class ListeB<T> implements IListe<T> {
   @Override
   public void concat(IListe<T> otherListe) {
     Object[] newListe = liste;
-    
+
     if (otherListe != null && otherListe.size() > 0) {
       liste = new Object[size + otherListe.size() + 1];
-      
+
       for (int i = 0; i < size; i++) {
         liste[i] = newListe[i];
       }
       int helpSize = size;
       for (int i = 0; i < otherListe.size(); i++) {
-        
-        insert(i+helpSize,(T)otherListe.retrieve(i));
+
+        insert(i + helpSize, (T) otherListe.retrieve(i));
       }
     }
   }

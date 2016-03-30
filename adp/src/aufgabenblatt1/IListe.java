@@ -1,7 +1,7 @@
 package aufgabenblatt1;
 
 public interface IListe<T> {
-  
+
   void insert(int index, T element);
 
   void delete(int index);
