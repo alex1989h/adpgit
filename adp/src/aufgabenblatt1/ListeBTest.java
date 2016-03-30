@@ -18,7 +18,7 @@ public class ListeBTest {
     try {
       list.insert(7, 26);
       assertTrue(false);
-    } catch (NullPointerException e) {
+    } catch (IndexOutOfBoundsException e) {
       // Fuer Test ob ein NullPointerException geworfen wird
     }
 //    list.delete(0);

@@ -22,7 +22,7 @@ public class ListeA<T> implements IListe<T> {
       liste = newListe;
       size++;
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
 
     if (size == liste.length) {
@@ -48,7 +48,7 @@ public class ListeA<T> implements IListe<T> {
       liste = newListe;
       size--;
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
   }
 
@@ -67,7 +67,7 @@ public class ListeA<T> implements IListe<T> {
     if (index >= 0 && index < size) {
       return liste[index];
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
   }
 

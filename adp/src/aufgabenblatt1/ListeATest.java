@@ -22,13 +22,13 @@ public class ListeATest {
     try {
       list1.insert(4, 24);
       assertTrue(false);
-    } catch (NullPointerException e) {
+    } catch (IndexOutOfBoundsException e) {
       // Fuer Test ob ein NullPointerException geworfen wird
     }
     try {
       list1.retrieve(3);
       assertTrue(false);
-    } catch (NullPointerException e) {
+    } catch (IndexOutOfBoundsException e) {
       // Fuer Test ob ein NullPointerException geworfen wird
     }
     ListeA<Integer> list2 = new ListeA<Integer>();
@@ -51,7 +51,7 @@ public class ListeATest {
     try {
       list.delete(3);
       assertTrue(false);
-    } catch (NullPointerException e) {
+    } catch (IndexOutOfBoundsException e) {
       // Fuer Test ob ein NullPointerException geworfen wird
     }
   }

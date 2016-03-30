@@ -34,7 +34,7 @@ public class ListeB<T> implements IListe<T> {
       // Stoppelement einfuegen
       liste[size] = element;
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
   }
 
@@ -58,7 +58,7 @@ public class ListeB<T> implements IListe<T> {
       size--;
       liste[size] = element;
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
 
   }
@@ -90,7 +90,7 @@ public class ListeB<T> implements IListe<T> {
     if (index >= 0 && index < size) {
       return ((ElementB) liste[index]).getElement();
     } else {
-      throw new NullPointerException();
+      throw new IndexOutOfBoundsException();
     }
   }
 
