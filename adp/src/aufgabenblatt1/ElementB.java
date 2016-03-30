@@ -25,9 +25,4 @@ public class ElementB {
   public int getPrevIndex() {
     return prevIndex;
   }
-
-  public void setIndex(int index) {
-    nexIndex = index + 1;
-    prevIndex = index - 1;
-  }
 }
