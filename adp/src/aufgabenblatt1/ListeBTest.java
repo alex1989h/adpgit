@@ -58,7 +58,7 @@ public class ListeBTest {
   public void testConcat() {
     ListeB<Integer> list1 = new ListeB<Integer>();
     list1.insert(0, 23);
-    list1.insert(0, 21);
+    list1.insert(1, 21);
     list1.insert(2, 24);
 
     ListeB<Integer> list2 = new ListeB<Integer>();
@@ -66,8 +66,8 @@ public class ListeBTest {
     list2.insert(1, 26);
 
     ListeB<Integer> summeListen = new ListeB<Integer>();
-    summeListen.insert(0, 21);
-    summeListen.insert(1, 23);
+    summeListen.insert(0, 23);
+    summeListen.insert(1, 21);
     summeListen.insert(2, 24);
     summeListen.insert(3, 28);
     summeListen.insert(4, 26);
