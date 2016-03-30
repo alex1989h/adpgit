@@ -7,28 +7,29 @@ import org.junit.Test;
 public class ListeBTest {
 
   @Test
-  public void test() {
+  public void testInsert() {
     ListeB<Integer> list = new ListeB<Integer>();
     assertEquals(0, list.size());
     list.insert(0, 23);
-    list.insert(1, 21);
+    list.insert(0, 21);
     list.insert(2, 22);
-    // list.insert(3, 25);
-    // list.insert(4, 24);
+    list.insert(1, 25);
+    list.insert(4, 24);
     try {
       list.insert(7, 26);
       assertTrue(false);
     } catch (NullPointerException e) {
       // Fuer Test ob ein NullPointerException geworfen wird
     }
-    list.delete(0);
+//    list.delete(0);
 
-    assertEquals(1, list.find(22));
-
-    // assertEquals(new Integer(24), list.retrieve(1));
-    // assertEquals(new Integer(25), list.retrieve(2));
-    // assertEquals(new Integer(23), list.retrieve(3));
-    // assertEquals(new Integer(24), list.retrieve(4));
+    assertEquals(3, list.find(22));
+    
+     assertEquals(new Integer(21), list.retrieve(0));
+     assertEquals(new Integer(25), list.retrieve(1));
+     assertEquals(new Integer(23), list.retrieve(2));
+     assertEquals(new Integer(22), list.retrieve(3));
+     assertEquals(new Integer(24), list.retrieve(4));
   }
 
   @Test

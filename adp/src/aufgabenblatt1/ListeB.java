@@ -6,46 +6,33 @@ public class ListeB<T> implements IListe<T> {
 
   private int size = 0;
 
-  private ElementB elementB = new ElementB();
-
-  private ElementB stop = new ElementB();
+  private ElementB element = new ElementB();
 
   @Override
-  public void insert(int index, T element) {
-
-    if (index == 0 && size == 0) {
-
-      elementB.einfuegen(index, element);
-      liste[index] = elementB;
-      size++;
-      liste[size] = stop;
-
-    } else if (index >= 0 && index <= size) {
-
-      ElementB helpElementB = (ElementB) liste[size - 1];
-      ElementB NeuElementB = new ElementB();
-
-      if (helpElementB.getNexIndex() == index) {
-        NeuElementB.einfuegen(index, element);
-        liste[index] = NeuElementB;
-        size++;
-        liste[size] = stop;
-      } else {
-
-        while (helpElementB.getPrevIndex() >= index) {
-          helpElementB = (ElementB) liste[helpElementB.getPrevIndex()];
-          ((ElementB) liste[helpElementB.getNexIndex()])
-              .setIndex(helpElementB.getNexIndex() + 1);
-          liste[helpElementB.getNexIndex() + 1] = liste[helpElementB
-              .getNexIndex()];
-        }
-        liste[helpElementB.getNexIndex()] = helpElementB;
-        helpElementB.setIndex(index + 1);
-        NeuElementB.einfuegen(index, element);
-        liste[helpElementB.getPrevIndex()] = NeuElementB;
-        size++;
-        liste[size] = stop;
+  public void insert(int index, T newElement) {
+    if (index >= 0 && index <= size) {
+      liste[size] = element;
+      ElementB help1 = new ElementB();
+      ElementB help2 = (ElementB) liste[index];
+      help1.einfuegen(index, newElement);
+      liste[index] = help1;
+      while (!help2.equals(element)) {
+        help1 = help2;
+        help2 = (ElementB) liste[help1.getNexIndex()];
+        liste[help1.getNexIndex()] = help1;
+        help1.einfuegen(help1.getNexIndex(), help1.getElement());
       }
+      size++;
+      // Verdoppelt das Array
+      if (size == liste.length) {
+        Object[] helpListe = new Object[liste.length * 2];
+        for (int i = 0; i < liste.length; i++) {
+          helpListe[i] = liste[i];
+        }
+        liste = helpListe;
+      }
+      // Stoppelement einfuegen
+      liste[size] = element;
     } else {
       throw new NullPointerException();
     }
@@ -55,20 +42,21 @@ public class ListeB<T> implements IListe<T> {
   public void delete(int index) {
     if ((index == 0 && size == 1) || index == size - 1) {
       size--;
-      liste[size] = stop;
+      liste[size] = element;
     } else if (index >= 0 && index < size) {
       ElementB helpElementB = (ElementB) liste[index];
 
       while (helpElementB.getNexIndex() < size) {
-
-        helpElementB.setIndex(helpElementB.getPrevIndex());
+        helpElementB.einfuegen(helpElementB.getPrevIndex(),
+            helpElementB.getElement());
         helpElementB = (ElementB) liste[helpElementB.getNexIndex() + 1];
         liste[helpElementB.getPrevIndex()] = helpElementB;
       }
       liste[helpElementB.getPrevIndex()] = helpElementB;
-      helpElementB.setIndex(helpElementB.getPrevIndex());
+      helpElementB.einfuegen(helpElementB.getPrevIndex(),
+          helpElementB.getElement());
       size--;
-      liste[size] = stop;
+      liste[size] = element;
     } else {
       throw new NullPointerException();
     }
@@ -76,21 +64,21 @@ public class ListeB<T> implements IListe<T> {
   }
 
   @Override
-  public int find(T element) {
+  public int find(T newElement) {
     if (size == 0) {
       return -1;
     }
 
     ElementB helpElementB = (ElementB) liste[0];
 
-    while (!liste[helpElementB.getNexIndex()].equals(stop)) {
-      if (helpElementB.getElement().equals(element)) {
+    while (!liste[helpElementB.getNexIndex()].equals(element)) {
+      if (helpElementB.getElement().equals(newElement)) {
         return helpElementB.getNexIndex() - 1;
       }
       helpElementB = (ElementB) liste[helpElementB.getNexIndex()];
     }
 
-    if (helpElementB.getElement().equals(element)) {
+    if (helpElementB.getElement().equals(newElement)) {
       return helpElementB.getNexIndex() - 1;
     }
 
