@@ -1,17 +1,28 @@
 package aufgabenblatt1;
 
-public class ListeC<T> implements IListe<T>{
+public class ListeC<T> implements IListe<T> {
+  private int size = 0;
+  private ElementC element;
 
   @Override
   public void insert(int index, T element) {
-    // TODO Auto-generated method stub
-    
+    ElementC hilfElement = this.element;
+    if (index >= 0 && index <= size) {
+      if(hilfElement == null){
+        this.element = new ElementC();
+        this.element.einfuegen(element);
+      }else{
+        //while(hilfElement.getNextElement()!=)
+        
+      }
+    }
+
   }
 
   @Override
   public void delete(int index) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
@@ -29,7 +40,7 @@ public class ListeC<T> implements IListe<T>{
   @Override
   public void concat(IListe<T> otherListe) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
