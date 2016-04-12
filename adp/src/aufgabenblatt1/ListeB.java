@@ -1,11 +1,27 @@
 package aufgabenblatt1;
 
+/**
+ * Zur Realisierung einer Liste anhand eines Array und in das Array
+ * abgespecherten Elementen (Hilfsklassen) die jeweils auf den vorigen Index und
+ * naechsten Index zeigen (zwei einfache abgespeicherte Integers in der Hilfsklasse)
+ * 
+ * @param <T>
+ */
 public class ListeB<T> implements IListe<T> {
-
+  
+  /**
+   * Array zum Abspeichern von ElementB (Hilfsklasse)
+   */
   private Object[] liste = new Object[10];
-
+  
+  /**
+   * Groesse des Arrays
+   */
   private int size = 0;
-
+  
+  /**
+   * Unser Stop-Element fuer die Abrueche in Schleifen
+   */
   private ElementB element = new ElementB();
 
   @Override

@@ -1,9 +1,20 @@
 package aufgabenblatt1;
 
+/**
+ * Zur Realiesieren einen Liste anhang eines einfachen Arrays
+ * 
+ * @param <T>
+ */
 public class ListeA<T> implements IListe<T> {
 
+  /**
+   * Array in dem die eigefuegte Objekte abgespeichert werden
+   */
   private Object[] liste = new Object[10];
 
+  /**
+   * Groesse der Liste
+   */
   private int size = 0;
 
   @Override

@@ -1,7 +1,20 @@
 package aufgabenblatt1;
 
+/**
+ * Zur Realiesieren einen Liste anhang einer einfach verketteteten ElementenC
+ * 
+ * @param <T>
+ */
 public class ListeC<T> implements IListe<T> {
+
+  /**
+   * hier wird die groesse der Liste abgespeichert
+   */
   private int size = 0;
+
+  /**
+   * Zum anhängen der Elemente, Selbst aber kein Element der Liste
+   */
   private ElementC element = new ElementC();
 
   @Override
