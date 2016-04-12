@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author Anushavan Melkonyan (Anushavan.Melkonyan@haw-hamburg.de),
  * 		   Alexander Hoffmann (Alexander.Hoffman@haw-hamburg.de)
  *
- *         Aufgabe: Aufgabenblatt 1, Aufgabe 2a)
+ *         Aufgabe: Aufgabenblatt 1, Aufgabe 3
  *
  * @param <T>
  *

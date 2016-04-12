@@ -12,7 +12,7 @@ package aufgabenblatt1;
  * @author Anushavan Melkonyan (Anushavan.Melkonyan@haw-hamburg.de), Alexander
  *         Hoffmann (Alexander.Hoffman@haw-hamburg.de)
  *
- *         Aufgabe: Aufgabenblatt 1, Aufgabe 2
+ *         Aufgabe: Aufgabenblatt 1, Aufgabe 2c)
  *
  */
 public class ElementC {
