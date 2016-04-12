@@ -21,7 +21,7 @@ public interface IListe<T> {
 
 	/**
 	 * Ein Object wird mindestens an die Stelle mit dem Index 0 eingefuegt und
-	 * hoehstens an der naechsten freien Stelle (am Ende der Liste) DieObjecte
+	 * hoehstens an der naechsten freien Stelle (am Ende der Liste) Die Objecte
 	 * ueberschreiben einander nicht, die Liste wird groesser
 	 * 
 	 * @param index
