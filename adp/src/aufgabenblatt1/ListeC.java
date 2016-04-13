@@ -26,7 +26,7 @@ public class ListeC<T> implements IListe<T> {
 	private int size = 0;
 
 	/**
-	 * Zum anhängen der Elemente, selbst aber kein Element der Liste
+	 * Zum anhaengen der Elemente, selbst aber kein Element der Liste
 	 */
 	private ElementC element = new ElementC();
 
@@ -64,6 +64,7 @@ public class ListeC<T> implements IListe<T> {
 
 	@Override
 	public int find(T element) {
+	  if(element==null)throw new IndexOutOfBoundsException();
 		if (size > 0) {
 			int index = 0;
 			ElementC hilfElement = this.element.getNextElement();
@@ -91,16 +92,21 @@ public class ListeC<T> implements IListe<T> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void concat(IListe<T> otherListe) {
+    ElementC hilfElement = this.element.getNextElement();
 		if (otherListe != null) {
-			while (otherListe.size() > 0) {
-				insert(size, (T) otherListe.retrieve(0));
-				otherListe.delete(0);
+			while (hilfElement.getNextElement()!=null) {
+			  hilfElement = hilfElement.getNextElement();
 			}
+			hilfElement.setNextElement(((ListeC<T>) otherListe).getElement());
+			size+= otherListe.size();
 		}
 	}
+	
+	public ElementC getElement(){
+    return element.getNextElement();
+  }
 
 	@Override
 	public int size() {

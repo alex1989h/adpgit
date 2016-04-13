@@ -115,6 +115,8 @@ public class ListeB<T> implements IListe<T> {
 			}
 		}
 	}
+	
+
 
 	@Override
 	public int size() {
