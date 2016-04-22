@@ -29,7 +29,7 @@ public class Mergesort {
     if (hilfsArray == null)
       hilfsArray = new int[array.length];
     int i, j;
-    for (i = l; i <= r; i++) {
+    for (i = l; i <= q; i++) {
       hilfsArray[i] = array[i];
     }
     for (j = q + 1; j <= r; j++) {
