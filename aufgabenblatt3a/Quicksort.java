@@ -33,7 +33,6 @@ public class Quicksort {
           j--;
         }
         if (i <= j) {
-          zaehlerV++;
           swap(array, i, j);
           i++;
           j--;
