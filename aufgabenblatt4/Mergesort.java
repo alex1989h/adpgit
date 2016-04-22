@@ -10,7 +10,7 @@ public class Mergesort {
   public int getZaehlerV() {
     return zaehlerV;
   }
-
+  int[] hilfsArray;
   
   public void sort(int[] array,int l, int r) {
       zaehlerR++;
@@ -22,9 +22,9 @@ public class Mergesort {
 
   private void merge(int[] array,int l, int q, int r) {
     
-    int[] hilfsArray = new int[array.length];
-    int i, j;
-    for (i = l; i <= q; i++) {
+    hilfsArray = new int[array.length];
+    int i, j,k;
+    for (i = l; i <= r; i++) {
       hilfsArray[i] = array[i];
     }
     for (j = q + 1; j <= r; j++) {
@@ -32,15 +32,14 @@ public class Mergesort {
     }
     i = l;
     j = r;
-    for (int k = l; k <= r; k++) {
-      if (hilfsArray[i] <= hilfsArray[j]) {
-        zaehlerV++;
-        array[k] = hilfsArray[i];
+    k = l;
+    while(i<j){
+      if(hilfsArray[i]<=hilfsArray[j]){
+        array[k]=hilfsArray[i];
         i++;
-      } else {
-        array[k] = hilfsArray[j];
+      }else {
+        array[k]=hilfsArray[j];
         j--;
-        zaehlerV++;
       }
     }
   }

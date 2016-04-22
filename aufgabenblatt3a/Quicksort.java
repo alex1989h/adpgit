@@ -1,7 +1,16 @@
 package aufgabenblatt3a;
 
 public class Quicksort {
-
+  
+  private int zaehlerR=0;
+  public int getZaehlerR() {
+    return zaehlerR;
+  }
+  private int zaehlerV=0;
+  public int getZaehlerV() {
+    return zaehlerV;
+  }
+  
   private void swap(int[] array, int i, int j) {
     int temp = array[i];
     array[i] = array[j];
@@ -9,26 +18,29 @@ public class Quicksort {
   }
 
   public void sort(int[] array, int links, int rechts) {
-    if (links < rechts) {
+      zaehlerR++;
       int i = links;
       int j = rechts;
       int p = array[(links+rechts)/2];
       while (i <= j) {
+        
         while (array[i] < p) {
+          zaehlerV++;
           i++;
         }
         while (array[j] > p) {
+          zaehlerV++;
           j--;
         }
         if (i <= j) {
+          zaehlerV++;
           swap(array, i, j);
           i++;
           j--;
         }
       }
-      sort(array, links, j);
-      sort(array, i, rechts);
-    }
+      if (links < j)sort(array, links, j);
+      if (i < rechts)sort(array, i, rechts);
   }
 
   public void sortRandom(int[] array, int links, int rechts) {
