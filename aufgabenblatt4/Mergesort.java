@@ -1,16 +1,23 @@
 package aufgabenblatt4;
 
 public class Mergesort {
+  
+  private int zaehlerR=0;
+  public int getZaehlerR() {
+    return zaehlerR;
+  }
+  private int zaehlerV=0;
+  public int getZaehlerV() {
+    return zaehlerV;
+  }
 
+  
   public void sort(int[] array,int l, int r) {
-
-    if (l < r) {
+      zaehlerR++;
       int q = (l + r) / 2;
-
-      sort(array,l, q);
-      sort(array,q + 1, r);
+      if (l < q)sort(array,l, q);
+      if (q+1 < r)sort(array,q + 1, r);
       merge(array,l, q, r);
-    }
   }
 
   private void merge(int[] array,int l, int q, int r) {
@@ -27,22 +34,14 @@ public class Mergesort {
     j = r;
     for (int k = l; k <= r; k++) {
       if (hilfsArray[i] <= hilfsArray[j]) {
+        zaehlerV++;
         array[k] = hilfsArray[i];
         i++;
       } else {
         array[k] = hilfsArray[j];
         j--;
+        zaehlerV++;
       }
-    }
-  }
-
-  public static void main(String[] args) {
-    int[] array = { 16, 23, 14, 7, 21, 20, 6, 1, 17, 13, 12, 9, 3,
-        19 };
-    Mergesort ms = new Mergesort();
-    ms.sort(array,0, array.length - 1);
-    for (int i = 0; i < array.length; i++) {
-      System.out.println(i + 1 + ": " + array[i]);
     }
   }
 }
