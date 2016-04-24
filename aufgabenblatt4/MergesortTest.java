@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import aufgabenblatt3a.Quicksort;
+//import aufgabenblatt3a.Quicksort;
 
 public class MergesortTest {
 
   @Test
   public void testSort() {
     Mergesort ms = new Mergesort();
-    Quicksort qs = new Quicksort();
+    //Quicksort qs = new Quicksort();
     for (int l = 0; l < 1; l++) {
       for (int k = 1; k <= 1; k++) {
 
@@ -21,7 +21,7 @@ public class MergesortTest {
               + (700 * (int) Math.pow(10, k));
 
         }
-        ms.sort(array,0,array.length-1);
+        ms.sort(array);
         for (int i = 0; i < array.length - 1; i++) {
           //System.out.println(array[i]);
           if (array[i] <= array[i + 1]) {
@@ -34,8 +34,8 @@ public class MergesortTest {
     }
     // System.out.println("Mergesort:rekrusiver Aufruf: "+ms.getZaehlerR());
     // System.out.println("Mergesort:Anzahl vergleiche: "+ms.getZaehlerV());
-    System.out.println("Mergesort:rekrusiver Aufruf: " + ms.getZaehlerR());
-    System.out.println("Mergesort:Anzahl vergleiche: " + ms.getZaehlerV());
+    //System.out.println("Mergesort:rekrusiver Aufruf: " + ms.getZaehlerR());
+    //System.out.println("Mergesort:Anzahl vergleiche: " + ms.getZaehlerV());
   }
 
 }

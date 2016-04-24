@@ -13,32 +13,38 @@ public class Mergesort {
   public int getZaehlerV() {
     return zaehlerV;
   }
-
+  
   int[] hilfsArray = null;
-
-  public void sort(int[] array, int l, int r) {
+  
+  public void sort(int[] array){
+    if(array != null && array.length > 1){
+      hilfsArray = new int[array.length];
+      int links = 0;
+      int rechts = array.length - 1;
+      sortR(array,links,rechts);
+    }
+  }
+  
+  private void sortR(int[] array, int links, int rechts) {
     zaehlerR++;
-    int q = (l + r) / 2;
-    if (l < q)sort(array, l, q);
-    if (q + 1 < r)sort(array, q + 1, r);
-    if (l < r) merge(array, l, q, r);
+    int mitte = (links + rechts) / 2;
+    if (links < mitte)sortR(array, links, mitte);
+    if (mitte + 1 < rechts)sortR(array, mitte + 1, rechts);
+    if (links < rechts) merge(array, links, mitte, rechts);
   }
 
-  private void merge(int[] array, int l, int q, int r) {
-
-    if (hilfsArray == null)
-      hilfsArray = new int[array.length];
+  private void merge(int[] array, int links, int mitte, int rechts) {
     int i, j;
-    for (i = l; i <= q; i++) {
+    for (i = links; i <= mitte; i++) {
       hilfsArray[i] = array[i];
     }
-    for (j = q + 1; j <= r; j++) {
-      hilfsArray[r + q + 1 - j] = array[j];
+    for (j = mitte + 1; j <= rechts; j++) {
+      hilfsArray[rechts + mitte + 1 - j] = array[j];
     }
-    i = l;
-    j = r;
+    i = links;
+    j = rechts;
 
-    for (int k = l; k <= r; k++) {
+    for (int k = links; k <= rechts; k++) {
       zaehlerV++;
       if (hilfsArray[i] <= hilfsArray[j]) {
         array[k] = hilfsArray[i];

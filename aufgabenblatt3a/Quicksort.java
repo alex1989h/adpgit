@@ -16,8 +16,16 @@ public class Quicksort {
     array[i] = array[j];
     array[j] = temp;
   }
+  
+  public void sort(int[] array){
+    if(array != null && array.length > 1){
+      int links = 0;
+      int rechts = array.length - 1;
+      sortR(array,links,rechts);
+    }
+  }
 
-  public void sort(int[] array, int links, int rechts) {
+  private void sortR(int[] array, int links, int rechts) {
       zaehlerR++;
       int i = links;
       int j = rechts;
@@ -38,12 +46,19 @@ public class Quicksort {
           j--;
         }
       }
-      if (links < j)sort(array, links, j);
-      if (i < rechts)sort(array, i, rechts);
+      if (links < j)sortR(array, links, j);
+      if (i < rechts)sortR(array, i, rechts);
   }
-
-  public void sortRandom(int[] array, int links, int rechts) {
-    if (links < rechts) {
+  
+  public void sortRandom(int[] array) {
+    if(array != null && array.length > 1){
+      int links = 0;
+      int rechts = array.length - 1;
+      sortRandomR(array,links,rechts);
+    }
+  }
+  
+  private void sortRandomR(int[] array, int links, int rechts) {
       int i = links;
       int j = rechts;
       int p = array[(int) (Math.random() * (rechts - links)) + links];
@@ -60,13 +75,19 @@ public class Quicksort {
           j--;
         }
       }
-      sort(array, links, j);
-      sort(array, i, rechts);
+      if (links < j)sortRandomR(array, links, j);
+      if (i < rechts)sortRandomR(array, i, rechts);
+  }
+  
+  public void sortMedian(int[] array) {
+    if(array != null && array.length > 1){
+      int links = 0;
+      int rechts = array.length - 1;
+      sortMedianR(array,links,rechts);
     }
   }
-
-  public void sortMedian(int[] array, int links, int rechts) {
-    if (links < rechts) {
+  
+  private void sortMedianR(int[] array, int links, int rechts) {
       int i = links;
       int j = rechts;
       int p = findMedian(array[links], array[(rechts + links) / 2],
@@ -84,9 +105,8 @@ public class Quicksort {
           j--;
         }
       }
-      sort(array, links, j);
-      sort(array, i, rechts);
-    }
+      if (links < j)sortMedianR(array, links, j);
+      if (i < rechts)sortMedianR(array, i, rechts);
   }
 
   private int findMedian(int l, int m, int r) {
