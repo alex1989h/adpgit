@@ -17,7 +17,7 @@ public class BaumTest {
     baum.einfuegen(7);
     baum.einfuegen(20);
     
-    assertEquals(73, baum.aufsummieren(8,32));
+    assertEquals(9, baum.aufsummieren(9,9));
     
   }
 }
