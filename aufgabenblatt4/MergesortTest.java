@@ -4,24 +4,29 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-//import aufgabenblatt3a.Quicksort;
+import aufgabenblatt3.Quicksort;
 
 public class MergesortTest {
 
   @Test
   public void testSort() {
-    Mergesort ms = new Mergesort();
-    //Quicksort qs = new Quicksort();
-    for (int l = 0; l < 1; l++) {
-      for (int k = 1; k <= 1; k++) {
-
+    long time;
+    //Mergesort ms = new Mergesort();
+//    MergesortB ms = new MergesortB();
+    Quicksort ms = new Quicksort();
+        int k=2;
         int[] array = new int[(int) Math.pow(10, k)];
         for (int i = 0; i < (int) Math.pow(10, k); i++) {
           array[i] = (int) (Math.random() * (int) Math.pow(10, k) * 100)
               + (700 * (int) Math.pow(10, k));
 
         }
+        
+        time = System.nanoTime();
         ms.sort(array);
+        time = (System.nanoTime()-time)/1000;
+        System.out.println(time+" micro seconds");
+        
         for (int i = 0; i < array.length - 1; i++) {
           //System.out.println(array[i]);
           if (array[i] <= array[i + 1]) {
@@ -30,12 +35,6 @@ public class MergesortTest {
             assertTrue(false);
           }
         }
-      }
-    }
-    // System.out.println("Mergesort:rekrusiver Aufruf: "+ms.getZaehlerR());
-    // System.out.println("Mergesort:Anzahl vergleiche: "+ms.getZaehlerV());
-    //System.out.println("Mergesort:rekrusiver Aufruf: " + ms.getZaehlerR());
-    //System.out.println("Mergesort:Anzahl vergleiche: " + ms.getZaehlerV());
   }
 
 }
