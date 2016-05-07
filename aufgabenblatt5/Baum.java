@@ -5,7 +5,7 @@ public class Baum {
 	private Knoten wurzel;
 	private int summe = 0;
 
-	void einfuegen(int wert) {
+	public void einfuegen(int wert) {
 		wurzel = einfuegenR(wurzel, wert);
 	}
 
@@ -34,7 +34,7 @@ public class Baum {
 	 * @param zweiteSchranke
 	 * @return
 	 */
-	int aufsummieren(int ersteSchranke, int zweiteSchranke) {
+	public int aufsummieren(int ersteSchranke, int zweiteSchranke) {
 		if (wurzel != null) {
 			summe = wurzel.getSumLeft() + wurzel.getWert() + wurzel.getSumRight();
 		} else {
