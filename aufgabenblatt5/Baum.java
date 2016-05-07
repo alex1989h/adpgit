@@ -6,6 +6,7 @@ public class Baum {
 	private int summe = 0;
 
 	public void einfuegen(int wert) {
+		if(wert < 0) throw new IllegalArgumentException("Nur positive Zahlen erlaubt");
 		wurzel = einfuegenR(wurzel, wert);
 	}
 
