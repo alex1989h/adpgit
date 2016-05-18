@@ -14,14 +14,14 @@ public class Baum {
 		if (hilfKnoten == null) {
 			return new Knoten(wert, null, null);
 		} else if (wert == hilfKnoten.getWert()) {
-			return hilfKnoten;
+			throw new IllegalArgumentException("Wert schon enthalten");
 		} else if (wert < hilfKnoten.getWert()) {
-			hilfKnoten.setSumLeft(wert);
 			hilfKnoten.setLinks(einfuegenR(hilfKnoten.getLinks(), wert));
+			hilfKnoten.setSumLeft(wert);
 			return hilfKnoten;
 		} else {
-			hilfKnoten.setSumRight(wert);
 			hilfKnoten.setRechts(einfuegenR(hilfKnoten.getRechts(), wert));
+			hilfKnoten.setSumRight(wert);
 			return hilfKnoten;
 		}
 	}

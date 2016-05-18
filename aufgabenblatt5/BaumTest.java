@@ -16,7 +16,11 @@ public class BaumTest {
 		baum.einfuegen(31);
 		baum.einfuegen(7);
 		baum.einfuegen(20);
-
+		try {
+			baum.einfuegen(45);
+			assertTrue("Exception wegen schon enthaltenen Wert nicht geworfen", false);
+		} catch (IllegalArgumentException e) {
+		}
 		try {
 			baum.einfuegen(-1);
 			assertTrue("Exception wegen negativen Zahl nicht geworfen", false);
