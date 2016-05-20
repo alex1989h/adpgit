@@ -9,7 +9,7 @@ public class HuffmanBaumTest {
   @Test
   public void test() {
     HuffmanBaum baum = new HuffmanBaum();
-    baum.zaehleHaefigkeit("AAsdsjhhahhsghAABbBB");
+    baum.codiere("MIS");
     baum.print();
   }
 

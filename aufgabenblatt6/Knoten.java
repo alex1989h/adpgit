@@ -10,9 +10,9 @@ public class Knoten {
 	public int getCounter() {
     return counter;
   }
-
-  public void count() {
-		this.counter++;
+	
+  public void count(int counter) {
+		this.counter = counter;
 	}
 	
 	private char zeichen;
@@ -41,7 +41,7 @@ public class Knoten {
 		this.rechts = rechts;
 	}
 
-	public int getZeichen() {
+	public char getZeichen() {
 		return zeichen;
 	}
 }
