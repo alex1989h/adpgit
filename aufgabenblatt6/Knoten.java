@@ -1,47 +1,49 @@
 package aufgabenblatt6;
 
-public class Knoten {
-	
+public class Knoten implements INode {
+
 	/**
 	 * Summe der Häufigkeit
 	 */
 	private int counter = 0;
-	
+
+	@Override
 	public int getCounter() {
-    return counter;
-  }
-	
-  public void count(int counter) {
+		return counter;
+	}
+
+	@Override
+	public void setCounter(int counter) {
 		this.counter = counter;
 	}
 	
-	private char zeichen;
-	private Knoten links;
-	private Knoten rechts;
+	private INode links;
+	private INode rechts;
 
-	public Knoten(char zeichen, Knoten links, Knoten rechts) {
-		this.zeichen = zeichen;
+	public Knoten(Knoten links, Knoten rechts) {
 		this.links = links;
 		this.rechts = rechts;
 	}
 
-	public Knoten getLinks() {
+	public INode getLinks() {
 		return links;
 	}
 
-	public void setLinks(Knoten links) {
-		this.links = links;
+	public void setLinks(INode links) {
+		if(links!=null){
+			this.links = links;
+			counter+=links.getCounter();
+		}
 	}
 
-	public Knoten getRechts() {
+	public INode getRechts() {
 		return rechts;
 	}
 
-	public void setRechts(Knoten rechts) {
-		this.rechts = rechts;
-	}
-
-	public char getZeichen() {
-		return zeichen;
+	public void setRechts(INode rechts) {
+		if(rechts!=null){
+			this.rechts = rechts;
+			counter+=rechts.getCounter();
+		}
 	}
 }
