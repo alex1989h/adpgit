@@ -37,49 +37,75 @@ public class HuffmanBaum {
 	public HuffmanBaum() {
 
 	}
-	int anzahlBits=0;
-	public String codiere(String string) {
+	int anzahlBits = 0;
+	public String kodiere(String string) {
+		anzahlBits=0;
 		array = new int[ANZAHL_16BIT_KOMBI];
 		initialisiere(string);
 		baueBaum();
 		for (int i = 0; i < string.length(); i++) {
-			gefunden=false;
+			gefunden = false;
 			codiereR(root, temp, temZaehler, string.charAt(i));
-			if(charBereit){
-				codeWort+=tempCode;
-				charBereit=false;
-				charNichtBereit=true;
-			}else{
-				charNichtBereit=false;
+			if (charBereit&&temZaehler>=anzahlBits) {
+				codeWort += tempCode;
+				charBereit = false;
+				charNichtBereit = true;
+			} else {
+				charNichtBereit = false;
 			}
 		}
-		anzahlBits=temZaehler;
-		while(temZaehler%16!=0){
+		anzahlBits = temZaehler;
+		while (temZaehler % 16 != 0) {
 			temZaehler++;
-			temp<<=1;
+			temp <<= 1;
 		}
-		codeWort+=temp;
-		String returnString=codeWort;
-		codeWort="";
-		temZaehler=0;
-		charNichtBereit=true;
-		array=null;
+		codeWort += temp;
+		String returnString = codeWort;
+		codeWort = "";
+		temZaehler = 0;
+		charNichtBereit = true;
+		array = null;
 		return returnString;
 	}
-	
+
 	/**
 	 * 
-	 * @param string Codierter Text
+	 * @param string
+	 *          Codierter Text
 	 * @return dekodierter text;
 	 */
-	public String necode(String string){
-		
+	public String dekodiere(String string) {
+		String encodeString = "";
+		int zaehler=0;
+		char mask = '\u8000';
+		INode node = root;
+		for (int i = 0; i < string.length(); i++) {
+			char zeichen = string.charAt(i);
+
+			for (int j = 0; j < 16;) {
+				if (node instanceof Knoten) {
+					zaehler++;
+					int t = mask & zeichen;
+					j++;
+					zeichen <<= 1;
+					if (t == 0) {
+						node = ((Knoten) node).getLinks();
+					} else {
+						node = ((Knoten) node).getRechts();
+					}
+				} else {
+					encodeString += ((Blatt) node).getZeichen();
+					node = root;
+				}
+				
+				if(zaehler==anzahlBits+1){
+					return encodeString;
+				}
+			}
+		}
 		return "";
 	}
-	
-	
-	
-	
+
 	private void initialisiere(String string) {
 		knotenList = new ArrayList<INode>();
 		root = null;
@@ -112,7 +138,7 @@ public class HuffmanBaum {
 	 * aus
 	 */
 	public void print() {
-		System.out.println("Zeichen	H�ufigkeit	Code");
+		System.out.println("Zeichen	Häufigkeit	Code");
 		printR(root, "");
 	}
 
@@ -194,7 +220,7 @@ public class HuffmanBaum {
 	String codeWort = "";
 	char temp = '\u0000';
 	char tempCode;
-	boolean gefunden=false;
+	boolean gefunden = false;
 	boolean charBereit = false;
 	boolean charNichtBereit = true;
 	/**
@@ -204,24 +230,25 @@ public class HuffmanBaum {
 	 */
 	private void codiereR(INode node, char code, int zaehler, char zeichen) {
 		if (!gefunden) {
-			if(zaehler%16==0&&!charNichtBereit){
-				tempCode=code;
-				charBereit=true;
+			if (zaehler % 16 == 0 && !charNichtBereit) {
+				anzahlBits=zaehler;
+				tempCode = code;
+				charBereit = true;
 			}
 			if (node instanceof Blatt) {
 				Blatt b = (Blatt) node;
 				if (b.getZeichen() == zeichen) {
-					gefunden=true;
+					gefunden = true;
 					temp = code;
-					temZaehler=zaehler;
+					temZaehler = zaehler;
 				}
 			} else if (node instanceof Knoten) {
 				Knoten k = (Knoten) node;
-				
-				codiereR(k.getLinks(), (char) ((code<<1) + 0), zaehler+1, zeichen);
-				codiereR(k.getRechts(), (char) ((code<<1)+ 1), zaehler+1, zeichen);
+
+				codiereR(k.getLinks(), (char) ((code << 1) + 0), zaehler + 1, zeichen);
+				codiereR(k.getRechts(), (char) ((code << 1) + 1), zaehler + 1, zeichen);
 			}
-			
+
 		}
 	}
 }
