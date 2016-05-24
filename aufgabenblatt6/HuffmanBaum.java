@@ -7,7 +7,7 @@ public class HuffmanBaum {
 	/**
 	 * Anzahl der moeglichen Kombinationen aus 8 Bit
 	 */
-	private final int ANZAHL_8BIT_KOMBI = 256;
+	private final int ANZAHL_16BIT_KOMBI = 65536;
 
 	/**
 	 * Wurzelknoten
@@ -35,14 +35,51 @@ public class HuffmanBaum {
 	 * Konstruktor
 	 */
 	public HuffmanBaum() {
-		array = new int[ANZAHL_8BIT_KOMBI];
-	}
 
-	public void codiere(String string) {
+	}
+	int anzahlBits=0;
+	public String codiere(String string) {
+		array = new int[ANZAHL_16BIT_KOMBI];
 		initialisiere(string);
 		baueBaum();
+		for (int i = 0; i < string.length(); i++) {
+			gefunden=false;
+			codiereR(root, temp, temZaehler, string.charAt(i));
+			if(charBereit){
+				codeWort+=tempCode;
+				charBereit=false;
+				charNichtBereit=true;
+			}else{
+				charNichtBereit=false;
+			}
+		}
+		anzahlBits=temZaehler;
+		while(temZaehler%16!=0){
+			temZaehler++;
+			temp<<=1;
+		}
+		codeWort+=temp;
+		String returnString=codeWort;
+		codeWort="";
+		temZaehler=0;
+		charNichtBereit=true;
+		array=null;
+		return returnString;
 	}
-
+	
+	/**
+	 * 
+	 * @param string Codierter Text
+	 * @return dekodierter text;
+	 */
+	public String necode(String string){
+		
+		return "";
+	}
+	
+	
+	
+	
 	private void initialisiere(String string) {
 		knotenList = new ArrayList<INode>();
 		root = null;
@@ -75,7 +112,7 @@ public class HuffmanBaum {
 	 * aus
 	 */
 	public void print() {
-		System.out.println("Zeichen	Häufigkeit	Code");
+		System.out.println("Zeichen	Hï¿½ufigkeit	Code");
 		printR(root, "");
 	}
 
@@ -152,5 +189,39 @@ public class HuffmanBaum {
 			anzahlKnoten--;
 		}
 		return kleinserKnoten;
+	}
+	int temZaehler = 0;
+	String codeWort = "";
+	char temp = '\u0000';
+	char tempCode;
+	boolean gefunden=false;
+	boolean charBereit = false;
+	boolean charNichtBereit = true;
+	/**
+	 * 
+	 * @param node
+	 * @param code
+	 */
+	private void codiereR(INode node, char code, int zaehler, char zeichen) {
+		if (!gefunden) {
+			if(zaehler%16==0&&!charNichtBereit){
+				tempCode=code;
+				charBereit=true;
+			}
+			if (node instanceof Blatt) {
+				Blatt b = (Blatt) node;
+				if (b.getZeichen() == zeichen) {
+					gefunden=true;
+					temp = code;
+					temZaehler=zaehler;
+				}
+			} else if (node instanceof Knoten) {
+				Knoten k = (Knoten) node;
+				
+				codiereR(k.getLinks(), (char) ((code<<1) + 0), zaehler+1, zeichen);
+				codiereR(k.getRechts(), (char) ((code<<1)+ 1), zaehler+1, zeichen);
+			}
+			
+		}
 	}
 }

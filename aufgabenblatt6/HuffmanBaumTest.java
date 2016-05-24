@@ -9,9 +9,11 @@ public class HuffmanBaumTest {
 	@Test
 	public void test() {
 		HuffmanBaum baum = new HuffmanBaum();
-		baum.codiere("MISSISSIPPI");
+		String code = baum.codiere("MISSISSIPPI");
+		System.out.println("Codiert\n"+code);
 		baum.print();
-		baum.codiere("\0    ");
+		code = baum.codiere("MISSISSIPPI");
+		System.out.println("Codiert\n"+code);
 		baum.print();
 	}
 
