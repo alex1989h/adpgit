@@ -9,7 +9,10 @@ public class HuffmanBaumTest {
 	@Test
 	public void test() {
 		HuffmanBaum baum = new HuffmanBaum();
-		String beispiel = "If you give someone a program you will frustrate them for a day? If you teach them how to program, you will frustrate them for a lifetime. The computing scientist?s main challenge is not to get confused by the complexities of his own making. Beauty is more important in computing than anywhere else in technology because software is so complicated. Beauty is the ultimate defence against complexity.";
+		String beispiel = "If you give someone a program you will frustrate them for a day? If you teach them how to "
+		    + "\nprogram, you will frustrate them for a lifetime. The computing scientist?s main challenge is not to "
+		    + "\nget confused by the complexities of his own making. Beauty is more important in computing than anywhere "
+		    + "\nelse in technology because software is so complicated. Beauty is the ultimate defence against complexity.";
 		String code = baum.kodiere(beispiel);
 		
 		System.out.println("Codiert\n" + code);

@@ -8,6 +8,7 @@ public class HuffmanBaum {
 	 * Anzahl der moeglichen Kombinationen aus 8 Bit
 	 */
 	private final int ANZAHL_16BIT_KOMBI = 65536;
+	private final int ANZAHL_BITS=16;
 
 	/**
 	 * Wurzelknoten
@@ -46,7 +47,7 @@ public class HuffmanBaum {
 		for (int i = 0; i < string.length(); i++) {
 			gefunden = false;
 			codiereR(root, temp, temZaehler, string.charAt(i));
-			if (charBereit&&temZaehler>=anzahlBits) {
+			if (charBereit&&temZaehler>anzahlBits) {
 				codeWort += tempCode;
 				charBereit = false;
 				charNichtBereit = true;
@@ -55,7 +56,7 @@ public class HuffmanBaum {
 			}
 		}
 		anzahlBits = temZaehler;
-		while (temZaehler % 16 != 0) {
+		while (temZaehler % ANZAHL_BITS != 0) {
 			temZaehler++;
 			temp <<= 1;
 		}
@@ -82,7 +83,7 @@ public class HuffmanBaum {
 		for (int i = 0; i < string.length(); i++) {
 			char zeichen = string.charAt(i);
 
-			for (int j = 0; j < 16;) {
+			for (int j = 0; j < ANZAHL_BITS;) {
 				if (node instanceof Knoten) {
 					zaehler++;
 					int t = mask & zeichen;
@@ -98,7 +99,7 @@ public class HuffmanBaum {
 					node = root;
 				}
 				
-				if(zaehler==anzahlBits+1){
+				if(zaehler>anzahlBits){
 					return encodeString;
 				}
 			}
@@ -223,6 +224,7 @@ public class HuffmanBaum {
 	boolean gefunden = false;
 	boolean charBereit = false;
 	boolean charNichtBereit = true;
+	
 	/**
 	 * 
 	 * @param node
@@ -230,7 +232,7 @@ public class HuffmanBaum {
 	 */
 	private void codiereR(INode node, char code, int zaehler, char zeichen) {
 		if (!gefunden) {
-			if (zaehler % 16 == 0 && !charNichtBereit) {
+			if (zaehler % ANZAHL_BITS == 0 && !charNichtBereit) {
 				anzahlBits=zaehler;
 				tempCode = code;
 				charBereit = true;
