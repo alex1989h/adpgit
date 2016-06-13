@@ -37,9 +37,11 @@ public class Hash {
 			
 		}
 	}
-	
+	long zeit=0;
 	public List<String> sucheDaten(String ip){
+		zeit=System.nanoTime();
 		long key = Long.parseLong(ip.replace(".", ""));
+		System.out.println(System.nanoTime()-zeit);
 		return finde(key);
 	}
 	

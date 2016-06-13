@@ -23,7 +23,7 @@ public class GUI extends Application{
 		GridPane root = new GridPane();
 		Hash ht = new Hash();
 		ht.initHt();
-		Weblog.erstelleWeblog("weblog.txt", (int)(4*10E5));
+		Weblog.erstelleWeblog("weblog.txt", (int)(4E6));
 		ht.erstelleHashTabelle("weblog.txt");
 		
 		//Tabelle fuer Ip Adresse
