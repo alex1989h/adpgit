@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import hashing.Entry;
-
 public class Hash {
 	
 	/**
@@ -93,7 +91,6 @@ public class Hash {
 	 */
 	public List<String> finde(long wert){
 		List<String> list = new ArrayList<String>();
-		String data="";
 		int j=0;
 		int i=getHashWert(wert,j);
 		int index = i;
@@ -111,7 +108,7 @@ public class Hash {
 				temp=temp.getNext();
 			}
 		}else{
-			data ="Ip Adresse nicht gefunden";
+			list.add("Ip Adresse nicht gefunden");
 		}
 		return list;
 	}
@@ -159,14 +156,15 @@ public class Hash {
 	
 	/**
 	 * 
+	 * @return Alle Ip Adressen aus der Hashtabelle
 	 */
-	public Set<String> getIps(){
+	public Set<String> getIps() {
 		Set<String> set = new HashSet<String>();
-    for(HashEintrag eintrag: ht){
-        if(eintrag != null && eintrag.getDaten() != null){
-            set.add(eintrag.getDaten().split("\\$")[0]);
-        }
-    }
-    return set;
+		for (HashEintrag eintrag : ht) {
+			if (eintrag != null && eintrag.getDaten() != null) {
+				set.add(eintrag.getDaten().split("\\$")[0]);
+			}
+		}
+		return set;
 	}
 }

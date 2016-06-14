@@ -1,18 +1,17 @@
 package aufgabenblatt7;
 
-import java.util.Observable;
-
-import javax.swing.text.html.HTML;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class GUI extends Application{
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -23,7 +22,7 @@ public class GUI extends Application{
 		GridPane root = new GridPane();
 		Hash ht = new Hash();
 		ht.initHt();
-		Weblog.erstelleWeblog("weblog.txt", (int)(4E6));
+		Weblog.erstelleWeblog("weblog.txt", (int)(4.2E6));
 		ht.erstelleHashTabelle("weblog.txt");
 		
 		//Tabelle fuer Ip Adresse
@@ -51,8 +50,17 @@ public class GUI extends Application{
       }
 		});
 		
-		root.add(ipView, 1, 1);
-		root.add(dataView, 2, 1);
+		Label ip = new Label("IP Adressen");
+		ip.setPadding(new Insets(5));
+		Label data = new Label("Daten");
+		data.setPadding(new Insets(5));
+		
+		root.add(ip, 1, 1);
+		root.add(data, 2, 1);
+		
+		root.add(ipView, 1, 2);
+		root.add(dataView, 2, 2);
+		
 		primaryStage.setScene(new Scene(root,800,500));
 		primaryStage.show();
 	}
