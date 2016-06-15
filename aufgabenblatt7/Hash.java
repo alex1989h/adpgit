@@ -56,30 +56,26 @@ public class Hash {
 	public void einfuegen(long wert, String daten){
 		int j=0;
 		int i=getHashWert(wert,j);
-		int index = i;
 		while(ht[i].getWert()!=wert&&ht[i].getStatus()!=Status.FREI){
 			j++;
 			i = getHashWert(wert,j);
-				if (ht[i].getStatus()!=Status.BELEGT&&ht[index].getStatus()==Status.BELEGT) {
-				index=i;
-			}
 		}
 		if(ht[i].getWert()==wert){
 			temp = ht[i];
 			while(temp.getNext()!=null){
 				temp=temp.getNext();
-			}
+		}
 			temp.setNext(new HashEintrag(wert,daten,Status.BELEGT));
 			
 		}else{
-			if(ht[index].getStatus()==Status.FREI&&anzahl>(0.6*ht.length)){
+			if(ht[i].getStatus()==Status.FREI&&anzahl>(0.6*ht.length)){
 				vergrAndRehash();
 				einfuegen(wert, daten);
 			} else {
 				anzahl++;
-				ht[index].setWert(wert);
-				ht[index].setDaten(daten);
-				ht[index].setStatus(Status.BELEGT);
+				ht[i].setWert(wert);
+				ht[i].setDaten(daten);
+				ht[i].setStatus(Status.BELEGT);
 			}
 		}
 	}
@@ -93,13 +89,9 @@ public class Hash {
 		List<String> list = new ArrayList<String>();
 		int j=0;
 		int i=getHashWert(wert,j);
-		int index = i;
 		while(ht[i].getWert()!=wert&&ht[i].getStatus()!=Status.FREI){
 			j++;
 			i = getHashWert(wert,j);
-			if (ht[i].getStatus()!=Status.BELEGT&&ht[index].getStatus()==Status.BELEGT) {
-				index=i;
-			}
 		}
 		if(ht[i].getWert()==wert){
 			temp = ht[i];
