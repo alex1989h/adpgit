@@ -7,7 +7,6 @@ public class HashTest {
 	@Test
 	public void test() {
 		Hash hash = new Hash();
-		hash.initHt();
 //		for (int i = 0; i < 10E5; i++) {
 //			hash.einfuegen(i, "Trala"+i);
 //		}

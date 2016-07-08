@@ -12,11 +12,6 @@ public class Hash {
 	 */
 	private HashEintrag ht[] = new HashEintrag[15];
 	private int anzahl=0;
-	public void initHt(){
-		for (int i = 0; i < ht.length; i++) {
-			ht[i]= new HashEintrag();
-		}
-	}
 	
 	public void erstelleHashTabelle(String filename){
 		List<String> list = Weblog.leseWeblog(filename);
@@ -56,11 +51,11 @@ public class Hash {
 	public void einfuegen(long wert, String daten){
 		int j=0;
 		int i=getHashWert(wert,j);
-		while(ht[i].getWert()!=wert&&ht[i].getStatus()!=Status.FREI){
+		while(ht[i]!=null && ht[i].getWert()!=wert && ht[i].getStatus()!=Status.FREI){
 			j++;
 			i = getHashWert(wert,j);
 		}
-		if(ht[i].getWert()==wert){
+		if(ht[i]!=null && ht[i].getWert()==wert){
 			temp = ht[i];
 			while(temp.getNext()!=null){
 				temp=temp.getNext();
@@ -68,11 +63,12 @@ public class Hash {
 			temp.setNext(new HashEintrag(wert,daten,Status.BELEGT));
 			
 		}else{
-			if(ht[i].getStatus()==Status.FREI&&anzahl>(0.6*ht.length)){
+			if((ht[i]==null||ht[i].getStatus()==Status.FREI)&&anzahl>(0.6*ht.length)){
 				vergrAndRehash();
 				einfuegen(wert, daten);
 			} else {
 				anzahl++;
+				if(ht[i]==null) ht[i]=new HashEintrag();
 				ht[i].setWert(wert);
 				ht[i].setDaten(daten);
 				ht[i].setStatus(Status.BELEGT);
@@ -121,10 +117,9 @@ public class Hash {
 		HashEintrag htAlt[];
 		htAlt=ht;
 		ht = new HashEintrag[ht.length*2];
-		initHt();
 		
 		for (int i = 0; i < htAlt.length; i++) {
-			if(htAlt[i].getStatus()==Status.BELEGT){
+			if(ht[i]!=null&&htAlt[i].getStatus()==Status.BELEGT){
 				einfuegen(htAlt[i].getWert(), htAlt[i].getDaten());
 			}
 		}
@@ -135,7 +130,7 @@ public class Hash {
  */
 	public void ausgabe(){
 		for (int i = 0; i < ht.length; i++) {
-			if (ht[i].getStatus()==Status.BELEGT) {
+			if (ht[i]!=null&&ht[i].getStatus()==Status.BELEGT) {
 				temp = ht[i];
 				while(temp!=null){
 					System.out.println("HashWert: "+i+" HashCode: "+temp.getWert()+" Daten: "+temp.getDaten());

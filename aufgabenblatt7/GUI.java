@@ -21,7 +21,6 @@ public class GUI extends Application{
 		primaryStage.setTitle("Hash");
 		GridPane root = new GridPane();
 		Hash ht = new Hash();
-		ht.initHt();
 		Weblog.erstelleWeblog("weblog.txt", (int)(5E6));
 		ht.erstelleHashTabelle("weblog.txt");
 		
